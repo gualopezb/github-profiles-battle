@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import { fetchPopularRepos } from '../utils/api';
 
+import ReposGrid from './ReposGrid';
+
 function LanguagesNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'Javascript', 'Ruby', 'Java', 'CSS', 'Python'];
 
@@ -82,7 +84,7 @@ export default class Popular extends Component {
         <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
         {this.isLoading() && <p>Loading...</p>}
         {error && <p>{error}</p>}
-        {repos[selectedLanguage] && <pre>{JSON.stringify(repos[selectedLanguage], null, 2)}</pre>}
+        {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
       </>
     );
   }
