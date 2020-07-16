@@ -11,7 +11,7 @@ export default function ReposGrid({ repos }) {
         const { login, avatar_url } = owner;
 
         return (
-          <li key={html_url} className="repo bg-light">
+          <li key={html_url} className="card bg-light">
             <h4 className="header-lg center-text">#{index + 1}</h4>
             <img className="avatar" src={avatar_url} alt={`Avatar for ${login}`} />
             <h2 className="center-text">

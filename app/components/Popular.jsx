@@ -83,7 +83,7 @@ export default class Popular extends Component {
       <>
         <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
         {this.isLoading() && <p>Loading...</p>}
-        {error && <p>{error}</p>}
+        {error && <p className="center-text error">{error}</p>}
         {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
       </>
     );
