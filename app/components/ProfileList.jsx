@@ -38,8 +38,8 @@ ProfileList.propTypes = {
     name: PropTypes.string,
     location: PropTypes.string,
     company: PropTypes.string,
-    followers: PropTypes.string,
-    following: PropTypes.string,
+    followers: PropTypes.number,
+    following: PropTypes.number,
   }).isRequired,
 };
 
