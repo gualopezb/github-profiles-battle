@@ -1,6 +1,7 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import withHover from '../hoc/withHover';
 
 const styles = {
   container: {
@@ -24,49 +25,24 @@ const styles = {
   },
 };
 
-export default class Tooltip extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hovering: false,
-    };
-
-    this.mouseOver = this.mouseOver.bind(this);
-    this.mouseOut = this.mouseOut.bind(this);
-  }
-
-  mouseOver() {
-    this.setState({
-      hovering: true,
-    });
-  }
-
-  mouseOut() {
-    this.setState({
-      hovering: false,
-    });
-  }
-
-  render() {
-    const { text, children } = this.props;
-    const { hovering } = this.state;
-
-    return (
-      <div onMouseOver={this.mouseOver} onMouseOut={this.mouseOut} style={styles.container}>
-        {hovering && <div style={styles.tooltip}>{text}</div>}
-        {children}
-      </div>
-    );
-  }
+function Tooltip({ text, children, hover }) {
+  return (
+    <div style={styles.container}>
+      {hover && <div style={styles.tooltip}>{text}</div>}
+      {children}
+    </div>
+  );
 }
 
 Tooltip.propTypes = {
   text: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   children: PropTypes.array,
+  hover: PropTypes.bool.isRequired,
 };
 
 Tooltip.defaultProps = {
   children: null,
 };
+
+export default withHover(Tooltip, 'hover');
