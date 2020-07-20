@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import withHover from '../hoc/withHover';
+import Hover from './Hover';
 
 const styles = {
   container: {
@@ -25,12 +25,16 @@ const styles = {
   },
 };
 
-function Tooltip({ text, children, hover }) {
+function Tooltip({ text, children }) {
   return (
-    <div style={styles.container}>
-      {hover && <div style={styles.tooltip}>{text}</div>}
-      {children}
-    </div>
+    <Hover>
+      {(hovering) => (
+        <div style={styles.container}>
+          {hovering && <div style={styles.tooltip}>{text}</div>}
+          {children}
+        </div>
+      )}
+    </Hover>
   );
 }
 
@@ -38,11 +42,10 @@ Tooltip.propTypes = {
   text: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   children: PropTypes.array,
-  hover: PropTypes.bool.isRequired,
 };
 
 Tooltip.defaultProps = {
   children: null,
 };
 
-export default withHover(Tooltip, 'hover');
+export default Tooltip;
