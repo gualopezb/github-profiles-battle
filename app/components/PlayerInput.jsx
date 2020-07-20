@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { ThemeConsumer } from '../contexts/theme';
+
 export default class PlayerInput extends Component {
   constructor(props) {
     super(props);
@@ -30,25 +32,33 @@ export default class PlayerInput extends Component {
     const { label } = this.props;
 
     return (
-      <form className="column player" onSubmit={this.handleSubmit}>
-        <label htmlFor="username" className="player-label">
-          {label}
-        </label>
-        <div className="row player-inputs">
-          <input
-            type="text"
-            id="username"
-            className="input-light"
-            placeholder="github username"
-            autoComplete="off"
-            value={username}
-            onChange={this.handleChange}
-          />
-          <button type="submit" className="btn btn-dark" disabled={!username}>
-            Submit
-          </button>
-        </div>
-      </form>
+      <ThemeConsumer>
+        {({ theme }) => (
+          <form className="column player" onSubmit={this.handleSubmit}>
+            <label htmlFor="username" className="player-label">
+              {label}
+            </label>
+            <div className="row player-inputs">
+              <input
+                type="text"
+                id="username"
+                className={`input-${theme}`}
+                placeholder="github username"
+                autoComplete="off"
+                value={username}
+                onChange={this.handleChange}
+              />
+              <button
+                type="submit"
+                className={`btn ${theme === 'dark' ? 'light-btn' : 'dark-btn'}`}
+                disabled={!username}
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        )}
+      </ThemeConsumer>
     );
   }
 }
