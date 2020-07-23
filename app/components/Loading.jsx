@@ -13,13 +13,8 @@ const styles = {
 };
 
 export default class Loading extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      content: props.text,
-    };
-  }
+  // eslint-disable-next-line react/destructuring-assignment
+  state = { content: this.props.text };
 
   componentDidMount() {
     const { text, speed } = this.props;

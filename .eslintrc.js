@@ -11,6 +11,7 @@ module.exports = {
     'jsx-a11y/no-autofocus': ['off'],
     'jsx-a11y/click-events-have-key-events': ['off'],
     'react/jsx-props-no-spreading': ['off'],
+    'react/state-in-constructor': ['off'],
     'import/no-extraneous-dependencies': [
       'error',
       {

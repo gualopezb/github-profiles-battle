@@ -33,24 +33,18 @@ LanguagesNav.propTypes = {
 };
 
 export default class Popular extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selectedLanguage: 'All',
-      repos: {},
-      error: null,
-    };
-    this.updateLanguage = this.updateLanguage.bind(this);
-    this.isLoading = this.isLoading.bind(this);
-  }
+  state = {
+    selectedLanguage: 'All',
+    repos: {},
+    error: null,
+  };
 
   componentDidMount() {
     const { selectedLanguage } = this.state;
     this.updateLanguage(selectedLanguage);
   }
 
-  async updateLanguage(selectedLanguage) {
+  updateLanguage = async (selectedLanguage) => {
     this.setState({
       selectedLanguage,
       error: null,
@@ -71,7 +65,7 @@ export default class Popular extends Component {
         this.setState({ error: 'There was an error fetching the repositories.' });
       }
     }
-  }
+  };
 
   isLoading() {
     const { selectedLanguage, repos, error } = this.state;

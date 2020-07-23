@@ -13,18 +13,14 @@ import Nav from './components/Nav';
 import './index.css';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      theme: 'light',
-      toggleTheme: () => {
-        this.setState(({ theme }) => ({
-          theme: theme === 'light' ? 'dark' : 'light',
-        }));
-      },
-    };
-  }
+  state = {
+    theme: 'light',
+    toggleTheme: () => {
+      this.setState(({ theme }) => ({
+        theme: theme === 'light' ? 'dark' : 'light',
+      }));
+    },
+  };
 
   render() {
     const { theme, toggleTheme } = this.state;
