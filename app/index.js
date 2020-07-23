@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-filename-extension */
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { ThemeProvider } from './contexts/theme';
 
-// import Popular from './components/Popular';
+import Popular from './components/Popular';
 import Battle from './components/Battle';
+import Results from './components/Results';
 import Nav from './components/Nav';
 
 import './index.css';
@@ -27,14 +29,19 @@ class App extends Component {
   render() {
     const { theme, toggleTheme } = this.state;
     return (
-      <ThemeProvider value={{ theme, toggleTheme }}>
-        <div className={theme}>
-          <div className="container">
-            <Nav />
-            <Battle />
+      <Router>
+        <ThemeProvider value={{ theme, toggleTheme }}>
+          <div className={theme}>
+            <div className="container">
+              <Nav />
+
+              <Route exact path="/" component={Popular} />
+              <Route exact path="/battle" component={Battle} />
+              <Route path="/battle/results" component={Results} />
+            </div>
           </div>
-        </div>
-      </ThemeProvider>
+        </ThemeProvider>
+      </Router>
     );
   }
 }
