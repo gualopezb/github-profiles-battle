@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -17,7 +18,10 @@ module.exports = {
     ],
   },
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-  plugins: [new HtmlWebpackPlugin({ template: 'app/index.html' })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: 'app/index.html' }),
+    new CopyPlugin({ patterns: [{ from: '_redirects' }] }),
+  ],
   resolve: {
     extensions: ['.js', '.jsx', '.css'],
   },
