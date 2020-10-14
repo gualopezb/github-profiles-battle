@@ -4,7 +4,7 @@
   "description": "GitHub Profiles Battle",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "NODE_ENV='production' webpack",
     "start:dev": "webpack-dev-server"
   },
   "keywords": [
